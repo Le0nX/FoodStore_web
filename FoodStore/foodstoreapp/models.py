@@ -15,5 +15,5 @@ class FoodStore(models.Model):
     address = models.CharField(max_length=500)
     logo = models.ImageField(upload_to='foodstore_logo/', blank=False)
 
-    def __str__(self):
+    def __str__(self):      # feature for admin pannel - indexes by name
         return self.name
