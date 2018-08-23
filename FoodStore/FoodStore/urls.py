@@ -16,8 +16,16 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from foodstoreapp import views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.home, name='home'),
+    url(r'^foodstore/sign-in/$', auth_views.login,
+        {'template_name': 'foodstore/sign_in.html'},
+        name='foodstore-sign-in'),
+    url(r'^foodstore/sign-out', auth_views.logout,
+        {'next_page': '/'},
+        name='foodstore-sign-out'),
+    url(r'^foodstore/$', views.foodstore_home, name='foodstore-home')
 ]
