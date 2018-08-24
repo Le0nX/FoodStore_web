@@ -1,5 +1,5 @@
-FoodStore/__pycache__/
-FoodStore/db.sqlite3
+__pycache__/
+db.sqlite3
+*.pyc
 FoodStore/*.pyc
-FoodStore/FoodStore/*.pyc
-FoodStore/FoodStore/secret_settings.py
+FoodStore/secret_settings.py
