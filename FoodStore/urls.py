@@ -13,7 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 from foodstoreapp import views
 from django.contrib.auth import views as auth_views
@@ -22,6 +22,8 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
+
+    # FoodStore
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.home, name='home'),
     url(r'^foodstore/sign-in/$', auth_views.login,
@@ -32,5 +34,10 @@ urlpatterns = [
         name='foodstore-sign-out'),
     url(r'^foodstore/sign-up', views.foodstore_sign_up,
         name='foodstore-sign-up'),
-    url(r'^foodstore/$', views.foodstore_home, name='foodstore-home')
+    url(r'^foodstore/$', views.foodstore_home, name='foodstore-home'),
+
+    # Sign In/ Sign Up
+    url(r'^api/social/', include('rest_framework_social_oauth2.urls')),
+    # convert-token (sign-in, sign-up)
+    # revoke-token (sign-out)
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
